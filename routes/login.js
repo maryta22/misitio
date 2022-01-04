@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
-/*
+
 //Para el método POST
 let bd = {
   'usuario': 'abc',
   'contrasenia': '123'
 }
-*/
+
 
 /*  
 router.get('/', function (req, res, next) {
@@ -16,6 +16,7 @@ router.get('/', function (req, res, next) {
 */
 
 // Function to handle the root path
+/*
 router.get('/validate', async function(req, res) {
 
   // Access the provided 'page' and 'limt' query parameters
@@ -29,9 +30,9 @@ router.get('/validate', async function(req, res) {
       articles: articles
   });
 });
+*/
 
 
-/*
 //Para el método POST
 router.post('/validate', function (req, res, next) {
   let usuario = req.body.user;
@@ -48,6 +49,6 @@ router.post('/validate', function (req, res, next) {
   }
 
 });
-*/
+
 
 module.exports = router;
