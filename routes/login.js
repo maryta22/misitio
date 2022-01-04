@@ -1,34 +1,5 @@
 var express = require('express');
-//var router = express.Router();
-
-//Para el método GET
-var bodyParser = require('body-parser');
-var url = require('url');
-var querystring = require('querystring');
-var Article = require('./models').Article; 
-
-let app = express();
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-// Function to handle the root path
-app.get('/', async function(req, res) {
-
-  // Access the provided 'page' and 'limt' query parameters
-  let page = req.query.page;
-  let limit = req.query.limit;
-
-  let articles = await Article.findAll().paginate({page: page, limit: limit}).exec();
-
-  // Return the articles to the rendering engine
-  res.render('index', {
-      articles: articles
-  });
-});
-
-let server = app.listen(8080, function() {
-  console.log('Server is listening on port 8080')
-});
+var router = express.Router();
 
 /*
 //Para el método POST
@@ -38,13 +9,12 @@ let bd = {
 }
 */
 
-/*
+/* GET users listing. */
 router.get('/', function (req, res, next) {
   res.render('login', { title: 'Login' });
 });
 
 module.exports = router;
-*/
 
 /*
 //Para el método POST
