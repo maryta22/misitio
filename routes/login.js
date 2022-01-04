@@ -9,16 +9,30 @@ let bd = {
 }
 */
 
-/* GET users listing. */
+/*  
 router.get('/', function (req, res, next) {
   res.render('login', { title: 'Login' });
 });
+*/
 
-router.get('/validate', function (req, res, next) {
-  res.render('validar', { title: 'Validate' });
+// Function to handle the root path
+app.get('/validate', async function(req, res) {
+
+  // Access the provided 'page' and 'limt' query parameters
+  let page = req.query.page;
+  let limit = req.query.limit;
+
+  let articles = await Article.findAll().paginate({page: page, limit: limit}).exec();
+
+  // Return the articles to the rendering engine
+  res.render('index', {
+      articles: articles
+  });
 });
 
-module.exports = router;
+let server = app.listen(8080, function() {
+  console.log('Server is listening on port 8080')
+});
 
 /*
 //Para el método POST
@@ -38,3 +52,5 @@ router.post('/validate', function (req, res, next) {
 
 });
 */
+
+module.exports = router;
