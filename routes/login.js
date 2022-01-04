@@ -14,6 +14,10 @@ router.get('/', function (req, res, next) {
   res.render('login', { title: 'Login' });
 });
 
+router.get('/validate', function (req, res, next) {
+  res.render('validar', { title: 'Validate' });
+});
+
 module.exports = router;
 
 /*

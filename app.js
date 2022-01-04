@@ -4,6 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const bodyParser = require('body-parser');
+const url = require('url');
+const querystring = require('querystring');
+
+const Article = require('./models').Article;
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var servicesRouter = require('./routes/services');
@@ -21,6 +27,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -43,5 +52,20 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.get('/', async function(req, res) {
+
+  // Access the provided 'page' and 'limt' query parameters
+  let page = req.query.page;
+  let limit = req.query.limit;
+
+  let articles = await Article.findAll().paginate({page: page, limit: limit}).exec();
+
+  // Return the articles to the rendering engine
+  res.render('index', {
+      articles: articles
+  });
+});
+
 
 module.exports = app;
