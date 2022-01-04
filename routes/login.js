@@ -1,11 +1,11 @@
 var express = require('express');
-var router = express.Router();
+//var router = express.Router();
 
 //Para el método GET
-const bodyParser = require('body-parser');
-const url = require('url');
-const querystring = require('querystring');
-const Article = require('./models').Article; 
+var bodyParser = require('body-parser');
+var url = require('url');
+var querystring = require('querystring');
+var Article = require('./models').Article; 
 
 let app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
