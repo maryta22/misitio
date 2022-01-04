@@ -16,7 +16,7 @@ router.get('/', function (req, res, next) {
 */
 
 // Function to handle the root path
-app.get('/validate', async function(req, res) {
+router.get('/validate', async function(req, res) {
 
   // Access the provided 'page' and 'limt' query parameters
   let page = req.query.page;
@@ -30,9 +30,6 @@ app.get('/validate', async function(req, res) {
   });
 });
 
-let server = app.listen(8080, function() {
-  console.log('Server is listening on port 8080')
-});
 
 /*
 //Para el método POST
